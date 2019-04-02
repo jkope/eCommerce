@@ -1,25 +1,36 @@
 import React, { Component } from 'react';
 import TitleBarGridList from './gridList';
 import store from '../store';
+import { connect } from 'react-redux';
 
 class ProductList extends Component {
+ 
 
-    componentDidMount() {
-        // store.dispatch({ type: 'GET_LIST'})
-        // console.log(store.getState())
-        
-
+    componentWillMount() {
+        fetch("https://my-json-server.typicode.com/tdmichaelis/typicode/products")
+            .then(res => res.json())
+            .then(result => {
+                console.log(result)
+                store.dispatch({ type: 'SET_LIST', payload: result })
+            })
     }
+
+
     render() {
+        if(!this.props.productList.length){
+            return <div/>
+        }
         return (
             <div>
-            <TitleBarGridList 
-            // tileData={[{title:'first'},{title:'second'}]}
-            />
+                <TitleBarGridList tileData={this.props.productList} />
             </div>
         );
     }
 
 }
 
-export default ProductList;
+function mapStateToProps({ productList }){
+    return {productList};
+}
+
+export default connect(mapStateToProps)(ProductList)

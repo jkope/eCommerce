@@ -32,13 +32,14 @@ const styles = theme => ({
 });
 
 
-store.dispatch({ type: 'GET_LIST' })
 
-const data = store.getState()
-const tileData = data.products;
+
+
+
 
 
 function TitlebarGridList(props) {
+    console.log(props)
     const { classes } = props;
 
     return (
@@ -47,7 +48,7 @@ function TitlebarGridList(props) {
                 <GridListTile key="Subheader" cols={2} style={{ height: 'auto' }}>
                     <ListSubheader component="div">All Products</ListSubheader>
                 </GridListTile>
-                {tileData.map(tile => (
+                {props.tileData.map(tile => (
                     <GridListTile key={tile.id}>
                         <img src={tile.img} alt={tile.title} />
                         <GridListTileBar 
