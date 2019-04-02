@@ -3,7 +3,8 @@ import './App.css';
 import Cart from './components/cart';
 import { Provider } from 'react-redux';
 import store from './store';
-
+import PrimarySearchAppBar from './components/searchBar';
+import ProductList from './components/propductList';
 
 // console.log(store.getState());
 // store.dispatch({ type: 'ADD_TO_CART', item: 7868786 })
@@ -16,7 +17,10 @@ class App extends Component {
 
   render() {
     return (
-      <Cart />
+      <div>
+        <PrimarySearchAppBar />
+        <ProductList />
+      </div>
     );
   }
 }
@@ -28,3 +32,5 @@ const WrappedApp = () => (
 );
 
 export default WrappedApp;
+
+//Material-ui   usage
