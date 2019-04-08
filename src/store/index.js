@@ -7,9 +7,17 @@ const initialState = {
     productList: [],
     cart: [
         {
-            item: 'item ID here',
+            item: '82397awedf',
             count: 3
-        }
+        },
+        {
+            item: 'lkjq42',
+            count: 1
+        },
+        {
+            item: 'i982klasd987',
+            count: 2
+        },
     ],
 }
 

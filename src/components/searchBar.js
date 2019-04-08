@@ -14,7 +14,7 @@ import { withStyles } from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
-import NotificationsIcon from '@material-ui/icons/Notifications';
+// import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import store from '../store';
 
@@ -90,7 +90,7 @@ const styles = theme => ({
 
 const list = store.getState().cart
 const carted = list.reduce((a,b)=>({count: a.count + b.count})) 
-console.log(carted)
+
 class PrimarySearchAppBar extends React.Component {
 
     state = {
@@ -121,53 +121,7 @@ class PrimarySearchAppBar extends React.Component {
         const isMenuOpen = Boolean(anchorEl);
         const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
-        // const renderMenu = (
-        //     <Menu
-        //         anchorEl={anchorEl}
-        //         anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-        //         transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-        //         open={isMenuOpen}
-        //         onClose={this.handleMenuClose}
-        //     >
-        //         <MenuItem onClick={this.handleMenuClose}>Profile</MenuItem>
-        //         <MenuItem onClick={this.handleMenuClose}>My account</MenuItem>
-        //     </Menu>
-        // );
-
-        // const renderMobileMenu = (
-        //     <Menu
-        //         anchorEl={mobileMoreAnchorEl}
-        //         anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-        //         transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-        //         open={isMobileMenuOpen}
-        //         onClose={this.handleMenuClose}
-        //     >
-        //         <MenuItem onClick={this.handleMobileMenuClose}>
-        //             <IconButton color="inherit">
-        //                 <Badge badgeContent={4} color="secondary">
-        //                     <MailIcon />
-        //                 </Badge>
-        //             </IconButton>
-        //             <p>Messages</p>
-        //         </MenuItem>
-        //         <MenuItem onClick={this.handleMobileMenuClose}>
-        //             <IconButton color="inherit">
-        //                 <Badge badgeContent={11} color="secondary">
-        //                     <NotificationsIcon />
-        //                 </Badge>
-        //             </IconButton>
-        //             <p>Notifications</p>
-        //         </MenuItem>
-        //         <MenuItem onClick={this.handleProfileMenuOpen}>
-        //             <IconButton color="inherit">
-        //                 <AccountCircle />
-        //             </IconButton>
-        //             <p>Profile</p>
-        //         </MenuItem>
-        //     </Menu>
-        // );
-
-        return (
+            return (
             <div className={classes.root}>
                 <AppBar position="static">
                     <Toolbar>
@@ -192,15 +146,13 @@ class PrimarySearchAppBar extends React.Component {
                         <div className={classes.grow} />
                         <div className={classes.sectionDesktop}>
                             <IconButton color="inherit">
-                                <Badge badgeContent={carted.val} color="secondary">
+                                <Badge badgeContent={
+                                        store.getState().cart.reduce((a, b) => ({ count: a.count + b.count })).count
+                                    } 
+                                    color="secondary">
                                     <ShoppingCartIcon />
                                 </Badge>
                             </IconButton>
-                            {/* <IconButton color="inherit">
-                                <Badge badgeContent={17} color="secondary">
-                                    <NotificationsIcon />
-                                </Badge>
-                            </IconButton> */}
                             <IconButton
                                 aria-owns={isMenuOpen ? 'material-appbar' : undefined}
                                 aria-haspopup="true"
@@ -217,8 +169,6 @@ class PrimarySearchAppBar extends React.Component {
                         </div>
                     </Toolbar>
                 </AppBar>
-                {/* {renderMenu} */}
-                {/* {renderMobileMenu} */}
             </div>
         );
     }
