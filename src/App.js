@@ -1,17 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
-import Cart from './components/cart';
 import { Provider } from 'react-redux';
 import store from './store';
 import PrimarySearchAppBar from './components/searchBar';
-import ProductList from './components/propductList';
-
-// console.log(store.getState());
-// store.dispatch({ type: 'ADD_TO_CART', item: 7868786 })
-// store.dispatch({ type: 'CHANGE_QUANTITY', item: 7868786, direction: 'increase' })
-// store.dispatch({ type: 'CHANGE_QUANTITY', item: 7868786, direction: 'decrease' })
-// store.dispatch({ type: 'SET_USER', name: 'ThisNewName' })
-// console.log(store.getState());
+import Outlet from './components/outlet';
 
 class App extends Component {
 
@@ -19,18 +11,16 @@ class App extends Component {
     return (
       <div>
         <PrimarySearchAppBar />
-        <ProductList />
+        <Outlet />
       </div>
     );
   }
 }
 
 const WrappedApp = () => (
-  <Provider store = {store}>
-    <App/>
+  <Provider store={store}>
+    <App />
   </Provider>
 );
 
 export default WrappedApp;
-
-//Material-ui   usage

@@ -13,8 +13,8 @@ import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import red from '@material-ui/core/colors/red';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
 import store from '../store';
+import {Link} from 'react-router-dom';
 
 const styles = theme => ({
     card: {
@@ -60,37 +60,33 @@ class ProductCard extends React.Component {
             <Card key={this.props.id} className={this.props.classes.card}>
                 <CardHeader
                     action={
-                        <IconButton>
-                            <MoreVertIcon />
+                        <IconButton aria-label="Add to Cart"
+                            onClick={() => this.addToCart(this.props.id)}
+                        >
+                            <ShoppingCartIcon />
                         </IconButton>
                     }
                     title={this.props.title}
                 />
-                <CardMedia
-                    className={this.props.classes.media}
-                    image={this.props.img}
-                    title={this.props.title}
-                />
+                <Link to={`/ProductDetails/${this.props.id}`}>
+                    <CardMedia
+                        className={this.props.classes.media}
+                        image={this.props.img}
+                        title={this.props.title}
+                    />
+                </Link>
                 <CardActions className={this.props.classes.actions} disableActionSpacing>
-                    <IconButton aria-label="Add to Cart"
-                        onClick={() => this.addToCart(this.props.id)}
-                    >
-                        <ShoppingCartIcon
-                        />
-                    </IconButton>
-                    <div>
-                        See Descripiton
+                    See Descripiton
                     <IconButton
-                            className={classnames(this.props.classes.expand, {
-                                [this.props.classes.expandOpen]: this.state.expanded,
-                            })}
-                            onClick={this.handleExpandClick}
-                            aria-expanded={this.state.expanded}
-                            aria-label="Show more"
-                        >
-                            <ExpandMoreIcon />
-                        </IconButton>
-                    </div>
+                        className={classnames(this.props.classes.expand, {
+                            [this.props.classes.expandOpen]: this.state.expanded,
+                        })}
+                        onClick={this.handleExpandClick}
+                        aria-expanded={this.state.expanded}
+                        aria-label="Show more"
+                    >
+                        <ExpandMoreIcon />
+                    </IconButton>
                 </CardActions>
                 <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
                     <CardContent>

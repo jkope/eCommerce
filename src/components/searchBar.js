@@ -6,17 +6,15 @@ import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import InputBase from '@material-ui/core/InputBase';
 import Badge from '@material-ui/core/Badge';
-// import MenuItem from '@material-ui/core/MenuItem';
-// import Menu from '@material-ui/core/Menu';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 import { withStyles } from '@material-ui/core/styles';
-// import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
-// import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
-import store from '../store';
+import {connect} from 'react-redux';
+import {Link} from 'react-router-dom';
+
 
 const styles = theme => ({
     root: {
@@ -88,8 +86,11 @@ const styles = theme => ({
     },
 });
 
-const list = store.getState().cart
-const carted = list.reduce((a,b)=>({count: a.count + b.count})) 
+// const list = store.getState().cart
+// const carted = list.reduce((a, b) => ({ count: a.count + b.count }))
+const mapStateToProps = (state) => {
+    return {cart: state.cart}
+}
 
 class PrimarySearchAppBar extends React.Component {
 
@@ -121,7 +122,7 @@ class PrimarySearchAppBar extends React.Component {
         const isMenuOpen = Boolean(anchorEl);
         const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
-            return (
+        return (
             <div className={classes.root}>
                 <AppBar position="static">
                     <Toolbar>
@@ -145,14 +146,19 @@ class PrimarySearchAppBar extends React.Component {
                         </div>
                         <div className={classes.grow} />
                         <div className={classes.sectionDesktop}>
-                            <IconButton color="inherit">
-                                <Badge badgeContent={
-                                        store.getState().cart.reduce((a, b) => ({ count: a.count + b.count })).count
-                                    } 
-                                    color="secondary">
-                                    <ShoppingCartIcon />
-                                </Badge>
+                            <Link to={{ pathname: '/cart' }}>
+                            <IconButton color="inherit" >
+                                {this.props.cart.length ? 
+                                    <Badge badgeContent={
+                                        this.props.cart.reduce((a, b) => ({ count: a.count + b.count })).count
+                                    }
+                                        color="secondary">
+                                        <ShoppingCartIcon />
+                                    </Badge> : 
+                                            <ShoppingCartIcon />
+                                }
                             </IconButton>
+                            </Link>
                             <IconButton
                                 aria-owns={isMenuOpen ? 'material-appbar' : undefined}
                                 aria-haspopup="true"
@@ -178,4 +184,5 @@ PrimarySearchAppBar.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(PrimarySearchAppBar);
+
+export default connect(mapStateToProps)(withStyles(styles)(PrimarySearchAppBar));

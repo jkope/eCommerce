@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import ProductCard from './card';
+import './gridList.css';
+
 
 
 const Cards = (props) => {
     const list = props.products.map((prod) =>
         <ProductCard 
+            className='card'
             key={prod.id}
             id={prod.id} 
             title={prod.title} 
@@ -12,7 +15,7 @@ const Cards = (props) => {
             img={prod.img}
             />);
     return (
-        <div>
+        <div className='gridBody'>
             {list}
         </div>
     );
