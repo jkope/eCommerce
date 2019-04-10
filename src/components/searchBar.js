@@ -11,7 +11,6 @@ import { withStyles } from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
-import MoreIcon from '@material-ui/icons/MoreVert';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 
@@ -86,8 +85,6 @@ const styles = theme => ({
     },
 });
 
-// const list = store.getState().cart
-// const carted = list.reduce((a, b) => ({ count: a.count + b.count }))
 const mapStateToProps = (state) => {
     return {cart: state.cart}
 }
@@ -103,32 +100,13 @@ class PrimarySearchAppBar extends React.Component {
         this.setState({ anchorEl: event.currentTarget });
     };
 
-    handleMenuClose = () => {
-        this.setState({ anchorEl: null });
-        this.handleMobileMenuClose();
-    };
-
-    handleMobileMenuOpen = event => {
-        this.setState({ mobileMoreAnchorEl: event.currentTarget });
-    };
-
-    handleMobileMenuClose = () => {
-        this.setState({ mobileMoreAnchorEl: null });
-    };
-
     render() {
-        const { anchorEl, mobileMoreAnchorEl } = this.state;
         const { classes } = this.props;
-        const isMenuOpen = Boolean(anchorEl);
-        const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
         return (
             <div className={classes.root}>
                 <AppBar position="static">
                     <Toolbar>
-                        {/* <IconButton className={classes.menuButton} color="inherit" aria-label="Open drawer">
-                            <MenuIcon />
-                        </IconButton> */}
                         <Typography className={classes.title} variant="h6" color="inherit" noWrap>
                             Shoppity-Shop
             </Typography>
@@ -145,7 +123,7 @@ class PrimarySearchAppBar extends React.Component {
                             />
                         </div>
                         <div className={classes.grow} />
-                        <div className={classes.sectionDesktop}>
+                        <div>
                             <Link to={{ pathname: '/cart' }}>
                             <IconButton color="inherit" >
                                 {this.props.cart.length ? 
@@ -160,17 +138,11 @@ class PrimarySearchAppBar extends React.Component {
                             </IconButton>
                             </Link>
                             <IconButton
-                                aria-owns={isMenuOpen ? 'material-appbar' : undefined}
                                 aria-haspopup="true"
                                 onClick={this.handleProfileMenuOpen}
                                 color="inherit"
                             >
                                 <AccountCircle />
-                            </IconButton>
-                        </div>
-                        <div className={classes.sectionMobile}>
-                            <IconButton aria-haspopup="true" onClick={this.handleMobileMenuOpen} color="inherit">
-                                <MoreIcon />
                             </IconButton>
                         </div>
                     </Toolbar>

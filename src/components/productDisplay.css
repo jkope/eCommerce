@@ -1,0 +1,11 @@
+.image {
+    min-width: 70%;
+    min-height: 50vh;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.row {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+}

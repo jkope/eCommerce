@@ -46,8 +46,8 @@ const styles = theme => ({
 class ProductCard extends React.Component {
     state = { expanded: false };
 
-    addToCart = (id) => {
-        store.dispatch({ type: 'ADD_TO_CART', item: id })
+    addToCart = (product) => {
+        store.dispatch({ type: 'ADD_TO_CART', item: product })
         console.log(store.getState().cart)
     }
 
@@ -57,22 +57,22 @@ class ProductCard extends React.Component {
 
     render() {
         return (
-            <Card key={this.props.id} className={this.props.classes.card}>
+            <Card key={this.props.key} className={this.props.classes.card}>
                 <CardHeader
                     action={
                         <IconButton aria-label="Add to Cart"
-                            onClick={() => this.addToCart(this.props.id)}
+                            onClick={() => this.addToCart(this.props.product)}
                         >
                             <ShoppingCartIcon />
                         </IconButton>
                     }
-                    title={this.props.title}
+                    title={this.props.product.title}
                 />
-                <Link to={`/ProductDetails/${this.props.id}`}>
+                <Link to={`/ProductDetails/${this.props.product.id}`}>
                     <CardMedia
                         className={this.props.classes.media}
-                        image={this.props.img}
-                        title={this.props.title}
+                        image={this.props.product.img}
+                        title={this.props.product.title}
                     />
                 </Link>
                 <CardActions className={this.props.classes.actions} disableActionSpacing>
@@ -91,7 +91,7 @@ class ProductCard extends React.Component {
                 <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
                     <CardContent>
                         <Typography paragraph>
-                            {this.props.description}
+                            {this.props.product.description}
                         </Typography>
                     </CardContent>
                 </Collapse>

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 
 const mapStateToListProps = (state) => {
@@ -10,14 +10,14 @@ const mapStateToListProps = (state) => {
     ));
     console.log(list)
     return {
-        list
+        List
     }
 }
 
 const List = props => (
     <div>
         {
-            props.list.map((item, index) => (
+            list.map((item, index) => (
                 <div
                     key={index}
                 
@@ -37,22 +37,6 @@ const List = props => (
 // store.dispatch({ type: 'SET_USER', name: 'ThisNewName' })
 // console.log(store.getState());
 
-
-// class Cart extends Component {
-
-//     componentDidMount() {
-
-//         // console.log(store.getState());
-//     }
-
-//     render() {
-//         return (
-//             <div className="App">
-//                 testing
-//       </div>
-//         );
-//     }
-// }
 
  const Cart = connect(
     mapStateToListProps)(List);

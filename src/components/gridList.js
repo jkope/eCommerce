@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import ProductCard from './card';
 import './gridList.css';
 
@@ -9,10 +9,10 @@ const Cards = (props) => {
         <ProductCard 
             className='card'
             key={prod.id}
-            id={prod.id} 
-            title={prod.title} 
-            description={prod.description} 
-            img={prod.img}
+            product={prod} 
+            // title={prod.title} 
+            // description={prod.description} 
+            // img={prod.img}
             />);
     return (
         <div className='gridBody'>

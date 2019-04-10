@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PaperSheet from './productDisplay';
+import store from '../store';
 
-// let product = {};
+
 
 const mapStateToProps = (state) => {
     return { products: state.productList }
@@ -16,15 +18,15 @@ class ProductDetails extends Component {
             return obj.id === this.id;
         })[0];
     }
+    addToCart = (id) => {
+        store.dispatch({ type: 'ADD_TO_CART', item: id })
+        console.log(store.getState().cart)
+    }
 
     render() {
-        // console.log (this.product)
         return (
             <div>
-                Product Details works
-                <div>
-                    {this.product.id}
-                </div>
+                <PaperSheet product={this.product} addToCart={this.addToCart}/>
             </div>
         );
     }

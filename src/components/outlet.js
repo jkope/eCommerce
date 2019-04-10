@@ -1,7 +1,7 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom'
 import propductList from './propductList';
-import Cart from './cart';
+import CartList from './cartList';
 import ProductDetails from './productDetails';
 
 
@@ -11,7 +11,7 @@ function Outlet() {
             <Switch>
                 <Route exact path='/' component={propductList} />
                 <Route path='/productdetails/:id' component={ProductDetails} />
-                <Route path='/cart' component={Cart} />
+                <Route path='/cart' component={CartList} />
             </Switch>
         </main>
     );
