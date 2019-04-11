@@ -1,0 +1,31 @@
+.line {
+    padding: 1em;
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+.txtgroup {
+    display: flex;
+    padding: 1em;
+    justify-content: space-between;
+    flex-direction: row;
+}
+.arrows {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: baseline
+}
+.subtxt {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: flex-end;
+}
+.cnt {
+    display: flex;
+    align-content: center;
+    font-size: 1.2em;
+    padding: .5em;
+}

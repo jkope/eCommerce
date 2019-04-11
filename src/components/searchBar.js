@@ -13,6 +13,7 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
+import store from '../store';
 
 
 const styles = theme => ({
@@ -86,7 +87,9 @@ const styles = theme => ({
 });
 
 const mapStateToProps = (state) => {
-    return {cart: state.cart}
+    return {
+        cart: state.cart,
+    }
 }
 
 class PrimarySearchAppBar extends React.Component {
@@ -100,8 +103,13 @@ class PrimarySearchAppBar extends React.Component {
         this.setState({ anchorEl: event.currentTarget });
     };
 
+    string = (e) => {
+            store.dispatch({ type: 'SEARCH', value: e.target.value })
+    }
+
     render() {
         const { classes } = this.props;
+        console.log('rerendered')
 
         return (
             <div className={classes.root}>
@@ -120,6 +128,7 @@ class PrimarySearchAppBar extends React.Component {
                                     root: classes.inputRoot,
                                     input: classes.inputInput,
                                 }}
+                                onChange={this.string}
                             />
                         </div>
                         <div className={classes.grow} />

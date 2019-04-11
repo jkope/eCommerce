@@ -12,6 +12,7 @@ class App extends Component {
       <div>
         <PrimarySearchAppBar />
         <Outlet />
+        
       </div>
     );
   }

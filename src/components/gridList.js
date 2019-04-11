@@ -10,9 +10,6 @@ const Cards = (props) => {
             className='card'
             key={prod.id}
             product={prod} 
-            // title={prod.title} 
-            // description={prod.description} 
-            // img={prod.img}
             />);
     return (
         <div className='gridBody'>

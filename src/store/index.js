@@ -4,6 +4,7 @@ import reducer from '../reducers'
 
 const initialState = {
     user: { name: 'jake' },
+    searchString: '',
     productList: [
         {
             "id": 1,
@@ -186,7 +187,7 @@ const initialState = {
             "category": "small-appliance"
         }
     ],
-    cart: [],
+    cart: [ ],
 }
 
 const store = createStore(reducer, initialState);
