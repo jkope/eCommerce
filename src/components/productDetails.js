@@ -20,7 +20,6 @@ class ProductDetails extends Component {
     }
     addToCart = (id) => {
         store.dispatch({ type: 'ADD_TO_CART', item: id })
-        console.log(store.getState().cart)
     }
 
     render() {

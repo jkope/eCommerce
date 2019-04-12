@@ -3,9 +3,26 @@
     min-height: 50vh;
     background-size: contain;
     background-repeat: no-repeat;
+    background-position: center;
 }
 .row {
     display: flex;
     flex-wrap: nowrap;
     justify-content: space-evenly;
+}
+.pad{
+    margin: 10px;
+}
+.group{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.container{
+    display: flex;
+    justify-content: center;
+    padding: 1em;
+}
+.right{
+    margin-left: 10px; 
 }

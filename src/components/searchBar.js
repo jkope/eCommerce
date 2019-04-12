@@ -87,17 +87,21 @@ const styles = theme => ({
 });
 
 const mapStateToProps = (state) => {
-    return {
+        return {
         cart: state.cart,
     }
 }
 
-class PrimarySearchAppBar extends React.Component {
 
+
+class PrimarySearchAppBar extends React.Component {
+    
     state = {
         anchorEl: null,
         mobileMoreAnchorEl: null,
     };
+
+    count =() => (this.props.cart.reduce((a, b) => ({ count: a.count + b.count })).count)
 
     handleProfileMenuOpen = event => {
         this.setState({ anchorEl: event.currentTarget });
@@ -109,14 +113,15 @@ class PrimarySearchAppBar extends React.Component {
 
     render() {
         const { classes } = this.props;
-        console.log('rerendered')
 
         return (
             <div className={classes.root}>
                 <AppBar position="static">
                     <Toolbar>
                         <Typography className={classes.title} variant="h6" color="inherit" noWrap>
+                            <Link to={{ pathname: '/' }} style={{ textDecoration: 'none' }}>
                             Shoppity-Shop
+                            </Link>
             </Typography>
                         <div className={classes.search}>
                             <div className={classes.searchIcon}>
@@ -137,7 +142,7 @@ class PrimarySearchAppBar extends React.Component {
                             <IconButton color="inherit" >
                                 {this.props.cart.length ? 
                                     <Badge badgeContent={
-                                        this.props.cart.reduce((a, b) => ({ count: a.count + b.count })).count
+                                        this.count()
                                     }
                                         color="secondary">
                                         <ShoppingCartIcon />
@@ -163,6 +168,10 @@ class PrimarySearchAppBar extends React.Component {
 
 PrimarySearchAppBar.propTypes = {
     classes: PropTypes.object.isRequired,
+    cart: PropTypes.arrayOf(
+        PropTypes.shape({item: PropTypes.object, count: PropTypes.number})
+    )
+
 };
 
 

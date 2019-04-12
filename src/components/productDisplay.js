@@ -12,17 +12,19 @@ const styles = theme => ({
         ...theme.mixins.gutters(),
         paddingTop: theme.spacing.unit * 2,
         paddingBottom: theme.spacing.unit * 2,
-        height: '100vh'
+        height: '100vh',
+        display: 'flex',
+        flexDirection: 'column',
+        alignContent: 'center',
     },
 });
 
 function PaperSheet(props) {
     const { classes } = props;
 
-    console.log(props.product)
     return (
 
-        <div>
+        <div className='container'>
             <Paper className={classes.root} elevation={1}>
                 <div className='row'>
                     <Typography variant="h5" component="h3">
@@ -42,6 +44,16 @@ function PaperSheet(props) {
                 <Typography component="p">
                     {props.product.description}
                 </Typography>
+                <div className='row'>
+                    <div className='group' component="div">
+                        <h5>Category:</h5>
+                        <div className='right'>{props.product.category}</div>
+                    </div>
+                    <div className='group' component="div">
+                        <h5>Rating:</h5>
+                        <div className='right'>{props.product.rating}</div>
+                    </div>
+                </div>
                 <div className='image' style={{ backgroundImage: "url(" + props.product.img + ")" }}>&nbsp;</div>
             </Paper>
         </div>

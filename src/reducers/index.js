@@ -5,7 +5,7 @@ export default function reducer(state, action) {
     switch (action.type) {
         
         case 'ADD_TO_CART':
-            let updatedCart = state.cart.length ? state.cart : []
+            let updatedCart = [...state.cart]
 
             let foundIndex = _.findIndex(state.cart, (o) => o.item.id === action.item.id);
             if(foundIndex !== -1) {

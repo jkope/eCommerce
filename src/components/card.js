@@ -18,7 +18,8 @@ import {Link} from 'react-router-dom';
 
 const styles = theme => ({
     card: {
-        maxWidth: 400,
+        width: 400,
+        margin: 10,
     },
     media: {
         height: 0,
@@ -48,7 +49,6 @@ class ProductCard extends React.Component {
 
     addToCart = (product) => {
         store.dispatch({ type: 'ADD_TO_CART', item: product })
-        console.log(store.getState().cart)
     }
 
     handleExpandClick = () => {
@@ -57,7 +57,7 @@ class ProductCard extends React.Component {
 
     render() {
         return (
-            <Card key={this.props.key} className={this.props.classes.card}>
+            <Card key={this.props.key} className={this.props.classes.card} >
                 <CardHeader
                     action={
                         <IconButton aria-label="Add to Cart"
@@ -76,7 +76,7 @@ class ProductCard extends React.Component {
                     />
                 </Link>
                 <CardActions className={this.props.classes.actions} disableActionSpacing>
-                    See Descripiton
+                    <h4>See Descripiton</h4>
                     <IconButton
                         className={classnames(this.props.classes.expand, {
                             [this.props.classes.expandOpen]: this.state.expanded,

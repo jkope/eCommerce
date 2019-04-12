@@ -1,0 +1,11 @@
+.cntr{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    bottom:0;
+}
+.buttons{
+    width: 30%;
+    display: flex;
+    justify-content: space-between;
+}
