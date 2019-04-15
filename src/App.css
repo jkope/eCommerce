@@ -35,10 +35,15 @@
   height: 85vh;
   overflow-y: auto;
 }
-.head{
-  /* height: 12vh; */
+.apart{
+  display: flex;
+  justify-content: space-between;
+  width:100%;
 }
 .foot{
-  /* height: 12vh; */
   bottom: 0;
+}
+.middle{
+  display: flex;
+  justify-content: center;
 }

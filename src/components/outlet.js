@@ -3,6 +3,7 @@ import { Switch, Route } from 'react-router-dom'
 import propductList from './propductList';
 import CartList from './cartList';
 import ProductDetails from './productDetails';
+import CheckedOut from './checkout';
 
 
 function Outlet() {
@@ -12,6 +13,7 @@ function Outlet() {
                 <Route exact path='/' component={propductList} />
                 <Route path='/productdetails/:id' component={ProductDetails} />
                 <Route path='/cart' component={CartList} />
+                <Route path='/checkedOut' component={CheckedOut} />
             </Switch>
         </main>
     );

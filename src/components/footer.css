@@ -9,3 +9,8 @@
     display: flex;
     justify-content: space-between;
 }
+.btn{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

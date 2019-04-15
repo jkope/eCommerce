@@ -1,0 +1,10 @@
+.row{
+    display: flex;
+    align-content: center;
+}
+.padLeft{
+    margin-left: 5px;
+}
+.marg{
+    margin:10px;
+}

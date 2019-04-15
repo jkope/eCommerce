@@ -119,7 +119,7 @@ class PrimarySearchAppBar extends React.Component {
                 <AppBar position="static">
                     <Toolbar>
                         <Typography className={classes.title} variant="h6" color="inherit" noWrap>
-                            <Link to={{ pathname: '/' }} style={{ textDecoration: 'none' }}>
+                            <Link to={{ pathname: '/' }} style={{ textDecoration: 'none', color: 'inherit' }}>
                             Shoppity-Shop
                             </Link>
             </Typography>
@@ -138,7 +138,7 @@ class PrimarySearchAppBar extends React.Component {
                         </div>
                         <div className={classes.grow} />
                         <div>
-                            <Link to={{ pathname: '/cart' }}>
+                            <Link to={{ pathname: '/cart' }} style={{ textDecoration: 'none', color: 'inherit' }}>
                             <IconButton color="inherit" >
                                 {this.props.cart.length ? 
                                     <Badge badgeContent={

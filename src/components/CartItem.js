@@ -37,7 +37,13 @@ class CartItem extends Component {
         const { count } = this.props.product
         return (
             <Paper elevation={1} className='line'>
-                <img src={item.img} alt={item.title} style={{ width: 'auto', height: '100px' }} />
+                <div className='col'>
+                    <img src={item.img} alt={item.title} style={{ width: 'auto', height: '100px' }} />
+                    <div className='rowpad'>
+                        <div>$</div>
+                        {item.price}
+                    </div>
+                </div>
                 <div className='txtgroup'>
                     <Typography variant="title" component="h3">
                         {item.title}
@@ -54,21 +60,21 @@ class CartItem extends Component {
                                 <ArrowUp />
                             </IconButton>
                             <IconButton
-                                disabled={count===0}
+                                disabled={count === 0}
                                 aria-haspopup="true"
                                 onClick={this.decreaseQuantity}
                                 color="inherit"
                             >
                                 <ArrowDown />
                             </IconButton>
-                            </div>
-                            <IconButton
-                                aria-haspopup="true"
-                                onClick={this.removeItem}
-                                color="inherit"
-                            >
-                                <Delete />
-                            </IconButton>
+                        </div>
+                        <IconButton
+                            aria-haspopup="true"
+                            onClick={this.removeItem}
+                            color="inherit"
+                        >
+                            <Delete />
+                        </IconButton>
                     </div>
                 </div>
             </Paper>

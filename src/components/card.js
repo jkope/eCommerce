@@ -14,7 +14,7 @@ import Typography from '@material-ui/core/Typography';
 import red from '@material-ui/core/colors/red';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import store from '../store';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const styles = theme => ({
     card: {
@@ -76,18 +76,26 @@ class ProductCard extends React.Component {
                     />
                 </Link>
                 <CardActions className={this.props.classes.actions} disableActionSpacing>
-                    <h4>See Descripiton</h4>
-                    <IconButton
-                        className={classnames(this.props.classes.expand, {
-                            [this.props.classes.expandOpen]: this.state.expanded,
-                        })}
-                        onClick={this.handleExpandClick}
-                        aria-expanded={this.state.expanded}
-                        aria-label="Show more"
-                    >
-                        <ExpandMoreIcon />
-                    </IconButton>
-                </CardActions>
+                <div className='apart'>
+                    <div className='row'>
+                        <h3>$</h3>
+                        <h3>{this.props.product.price}</h3>
+                    </div>
+                    <div className='row'>
+                        <h4>See Descripiton</h4>
+                        <IconButton
+                            className={classnames(this.props.classes.expand, {
+                                [this.props.classes.expandOpen]: this.state.expanded,
+                            })}
+                            onClick={this.handleExpandClick}
+                            aria-expanded={this.state.expanded}
+                            aria-label="Show more"
+                        >
+                            <ExpandMoreIcon />
+                        </IconButton>
+                    </div>
+                </div>
+              </CardActions>
                 <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
                     <CardContent>
                         <Typography paragraph>

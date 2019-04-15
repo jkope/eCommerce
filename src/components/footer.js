@@ -24,17 +24,17 @@ class SimpleBottomNavigation extends React.Component {
         return (
             <div className='cntr'>
                 <div className='buttons'>
-                    <Link style={{ textDecoration: 'none' }} to={{ pathname: '/' }}>
-                        <div>
+                    <Link style={{ textDecoration: 'none', color: '#3F51B5' }} to={{ pathname: '/' }}>
+                        <div className='btn'>
                             <FavoriteIcon />
                             <div>Products</div>
                         </div>
                     </Link>
 
-                    <Link style={{ textDecoration: 'none' }} to={{ pathname: '/cart' }}>
-                        <div>
+                    <Link style={{ textDecoration: 'none', color: '#3F51B5' }} to={{ pathname: '/cart' }}>
+                        <div className='btn'>
                             <ShoppingCartIcon />
-                            <div>Checkout</div>
+                            <div>My Cart</div>
                         </div>
                     </Link>
                 </div>
