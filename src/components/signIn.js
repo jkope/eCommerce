@@ -23,7 +23,7 @@ const styles = theme => ({
 });
 
 
-class OutlinedTextFields extends React.Component {
+class SignIn extends React.Component {
     state = {
         name: 'Cat in the Hat',
         age: '',
@@ -279,8 +279,8 @@ class OutlinedTextFields extends React.Component {
     }
 }
 
-OutlinedTextFields.propTypes = {
+SignIn.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(OutlinedTextFields);
+export default withStyles(styles)(SignIn);

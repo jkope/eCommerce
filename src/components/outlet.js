@@ -14,6 +14,7 @@ function Outlet() {
                 <Route path='/productdetails/:id' component={ProductDetails} />
                 <Route path='/cart' component={CartList} />
                 <Route path='/checkedOut' component={CheckedOut} />
+                <Route component={propductList} />
             </Switch>
         </main>
     );
