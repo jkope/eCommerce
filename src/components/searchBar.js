@@ -89,6 +89,7 @@ const styles = theme => ({
 const mapStateToProps = (state) => {
         return {
         cart: state.cart,
+        userName: state.userName
     }
 }
 
@@ -137,7 +138,10 @@ class PrimarySearchAppBar extends React.Component {
                             />
                         </div>
                         <div className={classes.grow} />
-                        <div>
+                        <div className='row'>
+                            <Link to={{ pathname: '/signin' }} style={{ textDecoration: 'none', color: 'inherit' }}>
+                            <p>{this.props.userName}</p>
+                            </Link>
                             <Link to={{ pathname: '/cart' }} style={{ textDecoration: 'none', color: 'inherit' }}>
                             <IconButton color="inherit" >
                                 {this.props.cart.length ? 
@@ -151,6 +155,7 @@ class PrimarySearchAppBar extends React.Component {
                                 }
                             </IconButton>
                             </Link>
+                            <Link to={{ pathname: '/signin' }} style={{ textDecoration: 'none', color: 'inherit' }}>
                             <IconButton
                                 aria-haspopup="true"
                                 onClick={this.handleProfileMenuOpen}
@@ -158,6 +163,7 @@ class PrimarySearchAppBar extends React.Component {
                             >
                                 <AccountCircle />
                             </IconButton>
+                            </Link>
                         </div>
                     </Toolbar>
                 </AppBar>

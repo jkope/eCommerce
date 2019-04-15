@@ -5,12 +5,12 @@ import Divider from '@material-ui/core/Divider';
 import { connect } from 'react-redux';
 import store from '../store';
 import Button from '@material-ui/core/Button';
-import { Link } from 'react-router-dom';
+import { Link, Redirect} from 'react-router-dom';
 import './cartList.css';
 
 
 const mapStateToProps = (state) => {
-    return { cartList: state.cart }
+    return { cartList: state.cart, userName: state.userName }
 }
 
 
@@ -37,6 +37,9 @@ class CartList extends Component {
     }
 
     render() {
+        if (!this.props.userName) {
+            return <Redirect to='/signin' />
+        }
         const list = this.props.cartList.map((prod) => (
             <List key={prod.item.id} component="nav">
                 <CartItem product={prod} />

@@ -4,6 +4,7 @@ import propductList from './propductList';
 import CartList from './cartList';
 import ProductDetails from './productDetails';
 import CheckedOut from './checkout';
+import SignIn from './signIn';
 
 
 function Outlet() {
@@ -14,6 +15,7 @@ function Outlet() {
                 <Route path='/productdetails/:id' component={ProductDetails} />
                 <Route path='/cart' component={CartList} />
                 <Route path='/checkedOut' component={CheckedOut} />
+                <Route path='/signin' component={SignIn} />
                 <Route component={propductList} />
             </Switch>
         </main>

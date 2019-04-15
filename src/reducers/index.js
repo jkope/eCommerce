@@ -41,10 +41,10 @@ export default function reducer(state, action) {
             return Object.assign({}, state, {
                 cart: []
             })
-        case 'SET_USER':
-            return Object.assign({}, state, {
-                user: { name: action.name }
-            })
+        // case 'SET_USER':
+        //     return Object.assign({}, state, {
+        //         user: { name: action.name }
+        //     })
         case 'SET_LIST':
             return {
                 ...state,
@@ -54,6 +54,11 @@ export default function reducer(state, action) {
             return {
                 ...state,
                 searchString: action.value.toLowerCase()
+            }
+        case 'SET_USER':
+            return {
+                ...state,
+                userName: action.value
             }
         default:
             return state

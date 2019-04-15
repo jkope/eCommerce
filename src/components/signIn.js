@@ -1,9 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
-import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
+import store from '../store';
+import { connect } from "react-redux";
+import Button from '@material-ui/core/Button';
+import { Redirect } from 'react-router';
 
 const styles = theme => ({
     container: {
@@ -23,12 +25,18 @@ const styles = theme => ({
 });
 
 
+function mapStateToProps(state) {
+    return {
+        userName: state.userName,
+    };
+}
+
 class SignIn extends React.Component {
     state = {
-        name: 'Cat in the Hat',
-        age: '',
-        multiline: 'Controlled',
-        currency: 'EUR',
+        name: '',
+        password: '',
+        fail: false,
+        toProducts: false
     };
 
     handleChange = name => event => {
@@ -37,245 +45,55 @@ class SignIn extends React.Component {
         });
     };
 
+    submit = (e) => {
+        e.preventDefault()
+        if (this.state.password === 'password') {
+            store.dispatch({ type: 'SET_USER', value: this.state.name })
+            this.setState({ toProducts: true });
+        } else {
+            this.setState({ fail: true });
+        }
+    }
+
     render() {
         const { classes } = this.props;
 
-        return (
-            <form className={classes.container} noValidate autoComplete="off">
-                <TextField
-                    id="outlined-name"
-                    label="Name"
-                    className={classes.textField}
-                    value={this.state.name}
-                    onChange={this.handleChange('name')}
-                    margin="normal"
-                    variant="outlined"
-                />
+        if (this.state.toProducts) {
+            return <Redirect to='/' />
+        } else {
+            return (
+                <div style={{display: 'flex', flexDirection: 'column', padding:'1em'}}>
+                    <h3>Provide a user name and enter 'password' as the password </h3>
+                    <form className={classes.container} noValidate autoComplete="off" >
+                        <TextField
+                            required
+                            id="outlined-name"
+                            label="Name"
+                            className={classes.textField}
+                            defaultValue={this.props.userName ? this.props.userName : this.state.name}
+                            onChange={this.handleChange('name')}
+                            margin="normal"
+                            variant="outlined"
+                        />
+                        <div>
+                            <TextField
+                                required
+                                id="outlined-password"
+                                label="Password"
+                                type='password'
+                                className={classes.textField}
+                                onChange={this.handleChange('password')}
+                                margin="normal"
+                                variant="outlined"
+                            />
+                            <p style={{ color: 'red' }}>{this.state.fail ? `Incorrect Password -- (the password is 'password')` : ''} </p>
+                        </div>
+                        <Button type="submit" value="Submit" onClick={this.submit.bind(this)}>Submit</Button>
 
-                <TextField
-                    id="outlined-uncontrolled"
-                    label="Uncontrolled"
-                    defaultValue="foo"
-                    className={classes.textField}
-                    margin="normal"
-                    variant="outlined"
-                />
-
-                <TextField
-                    required
-                    id="outlined-required"
-                    label="Required"
-                    defaultValue="Hello World"
-                    className={classes.textField}
-                    margin="normal"
-                    variant="outlined"
-                />
-
-                <TextField
-                    error
-                    id="outlined-error"
-                    label="Error"
-                    defaultValue="Hello World"
-                    className={classes.textField}
-                    margin="normal"
-                    variant="outlined"
-                />
-
-                <TextField
-                    disabled
-                    id="outlined-disabled"
-                    label="Disabled"
-                    defaultValue="Hello World"
-                    className={classes.textField}
-                    margin="normal"
-                    variant="outlined"
-                />
-
-                <TextField
-                    id="outlined-email-input"
-                    label="Email"
-                    className={classes.textField}
-                    type="email"
-                    name="email"
-                    autoComplete="email"
-                    margin="normal"
-                    variant="outlined"
-                />
-
-                <TextField
-                    id="outlined-password-input"
-                    label="Password"
-                    className={classes.textField}
-                    type="password"
-                    autoComplete="current-password"
-                    margin="normal"
-                    variant="outlined"
-                />
-
-                <TextField
-                    id="outlined-read-only-input"
-                    label="Read Only"
-                    defaultValue="Hello World"
-                    className={classes.textField}
-                    margin="normal"
-                    InputProps={{
-                        readOnly: true,
-                    }}
-                    variant="outlined"
-                />
-
-                <TextField
-                    id="outlined-dense"
-                    label="Dense"
-                    className={classNames(classes.textField, classes.dense)}
-                    margin="dense"
-                    variant="outlined"
-                />
-
-                <TextField
-                    id="outlined-multiline-flexible"
-                    label="Multiline"
-                    multiline
-                    rowsMax="4"
-                    value={this.state.multiline}
-                    onChange={this.handleChange('multiline')}
-                    className={classes.textField}
-                    margin="normal"
-                    helperText="hello"
-                    variant="outlined"
-                />
-
-                <TextField
-                    id="outlined-multiline-static"
-                    label="Multiline"
-                    multiline
-                    rows="4"
-                    defaultValue="Default Value"
-                    className={classes.textField}
-                    margin="normal"
-                    variant="outlined"
-                />
-
-                <TextField
-                    id="outlined-helperText"
-                    label="Helper text"
-                    defaultValue="Default Value"
-                    className={classes.textField}
-                    helperText="Some important text"
-                    margin="normal"
-                    variant="outlined"
-                />
-
-                <TextField
-                    id="outlined-with-placeholder"
-                    label="With placeholder"
-                    placeholder="Placeholder"
-                    className={classes.textField}
-                    margin="normal"
-                    variant="outlined"
-                />
-
-                <TextField
-                    id="outlined-textarea"
-                    label="Multiline Placeholder"
-                    placeholder="Placeholder"
-                    multiline
-                    className={classes.textField}
-                    margin="normal"
-                    variant="outlined"
-                />
-
-                <TextField
-                    id="outlined-number"
-                    label="Number"
-                    value={this.state.age}
-                    onChange={this.handleChange('age')}
-                    type="number"
-                    className={classes.textField}
-                    InputLabelProps={{
-                        shrink: true,
-                    }}
-                    margin="normal"
-                    variant="outlined"
-                />
-
-                <TextField
-                    id="outlined-search"
-                    label="Search field"
-                    type="search"
-                    className={classes.textField}
-                    margin="normal"
-                    variant="outlined"
-                />
-
-                <TextField
-                    id="outlined-select-currency"
-                    select
-                    label="Select"
-                    className={classes.textField}
-                    value={this.state.currency}
-                    onChange={this.handleChange('currency')}
-                    SelectProps={{
-                        MenuProps: {
-                            className: classes.menu,
-                        },
-                    }}
-                    helperText="Please select your currency"
-                    margin="normal"
-                    variant="outlined"
-                >
-                    {currencies.map(option => (
-                        <MenuItem key={option.value} value={option.value}>
-                            {option.label}
-                        </MenuItem>
-                    ))}
-                </TextField>
-                <TextField
-                    id="outlined-select-currency-native"
-                    select
-                    label="Native select"
-                    className={classes.textField}
-                    value={this.state.currency}
-                    onChange={this.handleChange('currency')}
-                    SelectProps={{
-                        native: true,
-                        MenuProps: {
-                            className: classes.menu,
-                        },
-                    }}
-                    helperText="Please select your currency"
-                    margin="normal"
-                    variant="outlined"
-                >
-                    {currencies.map(option => (
-                        <option key={option.value} value={option.value}>
-                            {option.label}
-                        </option>
-                    ))}
-                </TextField>
-                <TextField
-                    id="outlined-full-width"
-                    label="Label"
-                    style={{ margin: 8 }}
-                    placeholder="Placeholder"
-                    helperText="Full width!"
-                    fullWidth
-                    margin="normal"
-                    variant="outlined"
-                    InputLabelProps={{
-                        shrink: true,
-                    }}
-                />
-
-                <TextField
-                    id="outlined-bare"
-                    className={classes.textField}
-                    defaultValue="Bare"
-                    margin="normal"
-                    variant="outlined"
-                />
-            </form>
-        );
+                    </form>
+                </div>
+            );
+        }
     }
 }
 
@@ -283,4 +101,4 @@ SignIn.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(SignIn);
+export default connect(mapStateToProps)(withStyles(styles)(SignIn));
