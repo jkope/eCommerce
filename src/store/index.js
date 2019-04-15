@@ -3,7 +3,7 @@ import reducer from '../reducers'
 
 
 const initialState = {
-    userName: '',
+    userName: 'J',
     searchString: '',
     productList: [ ],
     cart: [ ],
